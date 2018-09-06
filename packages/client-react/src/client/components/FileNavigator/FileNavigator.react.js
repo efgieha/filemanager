@@ -291,10 +291,6 @@ class FileNavigator extends Component {
   };
 
   handleResourceItemClick = async ({ event, number, rowData }) => {
-    this.props.onResourceItemClick({ event, number, rowData });
-  };
-
-  handleResourceItemRightClick = async ({ event, number, rowData }) => {
     const isMobile = UserAgent.mobile();
     const { loadingView } = this.state;
     const { id } = rowData;
@@ -309,6 +305,11 @@ class FileNavigator extends Component {
     }
 
     this.focusView();
+    
+    this.props.onResourceItemClick({ event, number, rowData });
+  };
+
+  handleResourceItemRightClick = async ({ event, number, rowData }) => {
     this.props.onResourceItemRightClick({ event, number, rowData });
   };
 
