@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import MobileDetect from 'mobile-detect'
+
 import './FileNavigator.less';
 import ListView from '../ListView';
 import LocationBar from '../LocationBar';
@@ -56,6 +58,7 @@ const defaultProps = {
   onResourceChildrenChange: () => {}
 };
 
+const UserAgent = new MobileDetect(window.navigator.userAgent)
 const MONITOR_API_AVAILABILITY_TIMEOUT = 16;
 
 @clickOutside
@@ -292,6 +295,20 @@ class FileNavigator extends Component {
   };
 
   handleResourceItemRightClick = async ({ event, number, rowData }) => {
+    const isMobile = UserAgent.mobile();
+    const { loadingView } = this.state;
+    const { id } = rowData;
+
+    if (loadingView) {
+      return;
+    }
+
+    const isDirectory = rowData.type === 'dir';
+    if (isDirectory && isMobile) {
+      this.navigateToDir(id);
+    }
+
+    this.focusView();
     this.props.onResourceItemRightClick({ event, number, rowData });
   };
 
