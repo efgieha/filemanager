@@ -292,20 +292,21 @@ class FileNavigator extends Component {
 
   handleResourceItemClick = async ({ event, number, rowData }) => {
     const isMobile = UserAgent.mobile();
-    const { loadingView } = this.state;
-    const { id } = rowData;
+    if (isMobile) {
+      const { loadingView } = this.state;
+      const { id } = rowData;
 
-    if (loadingView) {
-      return;
+      if (loadingView) {
+        return;
+      }
+
+      const isDirectory = rowData.type === 'dir';
+      if (isDirectory) {
+        this.navigateToDir(id);
+      }
+
+      this.focusView();
     }
-
-    const isDirectory = rowData.type === 'dir';
-    if (isDirectory && isMobile) {
-      this.navigateToDir(id);
-    }
-
-    this.focusView();
-    
     this.props.onResourceItemClick({ event, number, rowData });
   };
 
