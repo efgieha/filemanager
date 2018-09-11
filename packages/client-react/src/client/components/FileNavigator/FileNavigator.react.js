@@ -34,7 +34,8 @@ const propTypes = {
   onResourceLocationChange: PropTypes.func,
   onSelectionChange: PropTypes.func,
   onResourceChange: PropTypes.func,
-  onResourceChildrenChange: PropTypes.func
+  onResourceChildrenChange: PropTypes.func,
+  isLoggedIn: PropTypes.bool
 };
 
 const defaultProps = {
@@ -102,6 +103,9 @@ class FileNavigator extends Component {
       const capabilitiesProps = this.getCapabilitiesProps();
       const initializedCapabilities = capabilities(apiOptions, capabilitiesProps);
       this.setState({ initializedCapabilities });
+    }
+    if (nextProps.isLoggedIn) {
+      this.initialize();
     }
   }
 
