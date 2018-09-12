@@ -46,6 +46,7 @@ const defaultProps = {
   },
   capabilities: () => [],
   className: '',
+  isLoggedIn: false,
   initialResourceId: '',
   listViewLayout: () => {},
   viewLayoutOptions: {},
