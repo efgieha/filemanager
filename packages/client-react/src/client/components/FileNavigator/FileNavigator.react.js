@@ -105,7 +105,7 @@ class FileNavigator extends Component {
       this.setState({ initializedCapabilities });
     }
     if (nextProps.isLoggedIn) {
-      this.initialize();
+      this.monitorApiAvailability();
     }
   }
 
