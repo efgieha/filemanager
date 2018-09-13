@@ -8,6 +8,7 @@
     "mobile-detect": "^1.4.2"
   },
   "name": "@opuscapita/filemanager-packages",
+  "version": "1.0.0",
   "private": true,
   "npmClientArgs": [
     "--no-lockfile"
@@ -25,5 +26,8 @@
     "start": "lerna run start --parallel",
     "updated": "lerna updated || exit 0",
     "publish": "lerna publish --exact --skip-git --force-publish=* --repo-version $(jq -r '.version' lerna.json) --yes"
+  },
+  "dependencies": {
+    "@opuscapita/filemanager-packages": "file:../filemanager"
   }
 }

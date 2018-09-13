@@ -61,7 +61,7 @@ const defaultProps = {
 };
 
 const UserAgent = new MobileDetect(window.navigator.userAgent)
-const MONITOR_API_AVAILABILITY_TIMEOUT = 16;
+const MONITOR_API_AVAILABILITY_TIMEOUT = 1000;
 
 @clickOutside
 export default
